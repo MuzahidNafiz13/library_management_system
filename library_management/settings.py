@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import environ
+import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 from pathlib import Path
@@ -89,16 +90,21 @@ WSGI_APPLICATION = 'library_management.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
+    'default': dj_database_url.config(        
+        default='postgresql://library_management_3hwr_user:seiFBbPdm6bHcJvzkVJDCQnpwebJklYV@dpg-cq8ntkiju9rs73b71gs0-a.oregon-postgres.render.com/library_management_3hwr',        
+        )}
 
 # AUTH_USER_MODEL = 'users.User'
 
