@@ -28,6 +28,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ['https://library-management-system-o7ah.onrender.com', 'https://*.127.0.0.1']
 
 # Application definition
 
