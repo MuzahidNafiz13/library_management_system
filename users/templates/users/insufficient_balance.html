@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Insufficient Balance</h2>
+  <p>Sorry, you do not have enough balance to borrow this book.</p>
+  <a href="{% url 'profile' %}">Go back to profile</a>
+{% endblock %}

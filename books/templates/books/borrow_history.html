@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Borrow History</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Borrowed At</th>
+            <th>Borrower</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for borrow in borrows %}
+            <tr>
+                <td>{{ borrow.book.title }}</td>
+                <td>{{ borrow.borrowed_at }}</td>
+                <td>{{ borrow.user.username }}</td>
+                <td>
+                    <form method="post" action="{% url 'return-book' borrow.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Return</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

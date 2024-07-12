@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Library</h1>
+    <p class="lead">Find your Book with us to Borrow!</p>
+    <hr class="my-4">
+    <img src="{% static 'images/images (3).jpeg' %}" alt="Book" class="img-fluid">
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <h4>Filter by Category</h4>
+        <form method="get">
+            <select name="category" class="form-control" onchange="this.form.submit()">
+                <option value="">All Category</option>
+                {% for category in categorys %}
+                    <option value="{{ category.name }}" {% if request.GET.category == category.name %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            {% for book in books %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">${{ book.price }}</p>
+                            <a href="{% url 'book-detail' book.pk %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
